@@ -1,0 +1,9 @@
+    - job_name: 'pushgateway'
+      scrape_interval: 15s # How often Prometheus scrapes the Pushgateway
+      honor_labels: true   # Important: Allows Pushgateway to provide labels that Prometheus respects
+      static_configs:
+        - targets: ['pushgateway-prometheus-pushgateway.default.svc.cluster.local:9091']
+          # Note: The target above is the internal Kubernetes service name for the Pushgateway.
+          # It typically follows the pattern: <helm-release-name>-<chart-name>.<namespace>.svc.cluster.local:<port>
+          # If you named your pushgateway release differently (e.g., 'my-pushgateway'), adjust accordingly.
+          # 'default' is the namespace Helm usually installs to if not specified.
